@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Боранбек Нұрислам — Full-stack Developer. Профессионал деңгейде код арқылы сайттар жасаймын, деплой жасап беремін. Шымкент.">
   <title>Боранбек Нұрислам | Full-stack Developer</title>
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="images/logo.jpg">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,21 +20,6 @@
 </head>
 <body class="has-promo-banner">
 
-  <!-- ===== УАҚЫТША ЖЕҢІЛДІК БАННЕРІ — алу үшін осы блокты өшіріңіз ===== -->
-  <aside class="promo-banner" id="promoBanner" role="note" aria-label="Жеңілдік акциясы">
-    <div class="promo-banner__inner">
-      <span class="promo-banner__tag">🔥 Акция</span>
-      <p class="promo-banner__text">
-        Дәл қазір тапсырыс берсеңіз — <strong>90% жеңілдік</strong>!
-      </p>
-      <a href="#contact" class="promo-banner__cta">Тапсырыс беру</a>
-      <button type="button" class="promo-banner__close" id="promoClose" aria-label="Баннерді жабу">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-  </aside>
-  <!-- ===== УАҚЫТША ЖЕҢІЛДІК БАННЕРІ СОҢЫ ===== -->
-
   <!-- Артқы фон — неонды бұлдыр шеңберлер -->
   <div class="bg-orbs" aria-hidden="true">
     <div class="orb orb-purple"></div>
@@ -43,9 +30,8 @@
   <!-- ===== HEADER / NAVIGATION ===== -->
   <header class="header" id="header">
     <nav class="nav glass" aria-label="Негізгі навигация">
-      <a href="#hero" class="nav__logo">
-        <span class="nav__logo-icon">&lt;/&gt;</span>
-        <span class="nav__logo-text">NURIS<span class="accent">.dev</span></span>
+      <a href="#hero" class="nav__logo" aria-label="NURIS.dev — басты бет">
+        <img src="images/logo.jpg" alt="NURIS.dev" class="nav__logo-img" width="160" height="160">
       </a>
 
       <button class="nav__toggle" id="navToggle" aria-label="Мәзірді ашу" aria-expanded="false">
@@ -69,20 +55,12 @@
     <section class="hero" id="hero">
       <div class="container hero__grid">
         <div class="hero__content">
-          <!-- УАҚЫТША ЖЕҢІЛДІК — алу үшін осы жолды өшіріңіз -->
-          <a href="#contact" class="hero__promo glass">
-            <i class="fa-solid fa-bolt"></i>
-            <span>Дәл қазір тапсырыс берсеңіз — <strong>90% жеңілдік</strong></span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <!-- УАҚЫТША ЖЕҢІЛДІК СОҢЫ -->
-
-          <span class="hero__badge glass">✦ Full-stack Developer / Web-әзірлеуші · Шымкент</span>
+          <span class="hero__badge glass">✦ Full-stack Developer / Web-әзірлеуші · Шымкент / Алматы</span>
           <h1 class="hero__title">
-            Күрделі интерфейстерді <span class="gradient-text">профессионал деңгейде</span> код арқылы жинап, интернетке толықтай шығарып (деплой) беремін
+            Күрделі сайттарды <span class="gradient-text">таза кодпен</span> жинап, деплойға дейін беремін
           </h1>
           <p class="hero__desc">
-            Мен сайтты профессионал деңгейде жасап беремін — бұл дегенді Tilda, Canva сияқты дайын шаблон немесе конструкторлар арқылы емес, толықтай код (HTML5, CSS3, JavaScript, React, Python, SQL, C#, Git) арқылы жазып, оған сілтемені өз қалауыңызша қойып, интернеттен еркін көрінетіндей етемін.
+            Tilda мен Canva емес — толықтай кодпен жазылған, сіздің сілтемеңізбен жұмыс істейтін сайт.
           </p>
           <div class="hero__actions">
             <a href="#projects" class="btn btn--primary">
@@ -218,7 +196,36 @@
         </div>
 
         <div class="projects__grid">
-          <!-- Жоба 1: Abadan -->
+          <!-- Жоба 1: AI Stud Space -->
+          <article class="project-card glass">
+            <div class="project-card__image">
+              <img
+                src="images/aistud.png"
+                alt="AI Stud Space — студенттерге арналған AI жоспарлаушы"
+                class="project-card__img"
+                loading="lazy"
+              >
+              <div class="project-card__overlay">
+                <span class="project-card__category">EdTech / AI</span>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">AI Stud Space</h3>
+              <p class="project-card__desc">Студенттерге арналған ақылды жоспарлаушы. Сабақ кестесі, үй тапсырмалары, AI көмекшісі, тіркелу жүйесі және жеке кабинет — бір платформада.</p>
+              <div class="project-card__tags">
+                <span>Next.js</span>
+                <span>TypeScript</span>
+                <span>AI</span>
+              </div>
+              <div class="project-card__actions">
+                <a href="https://ai-stud.space" class="btn btn--sm btn--primary" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Жоба 2: Abadan -->
           <article class="project-card glass">
             <div class="project-card__image">
               <img
@@ -250,7 +257,7 @@
             </div>
           </article>
 
-          <!-- Жоба 2: TulparAutoKaz -->
+          <!-- Жоба 3: TulparAutoKaz -->
           <article class="project-card glass">
             <div class="project-card__image">
               <img
@@ -282,7 +289,7 @@
             </div>
           </article>
 
-          <!-- Жоба 3: Prava Aluga Daindyq -->
+          <!-- Жоба 4: Prava Aluga Daindyq -->
           <article class="project-card glass">
             <div class="project-card__image">
               <img
@@ -305,6 +312,67 @@
               </div>
               <div class="project-card__actions">
                 <a href="https://pravaalu.kz" class="btn btn--sm btn--primary" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Жоба 5: Trade Flow -->
+          <article class="project-card glass">
+            <div class="project-card__image">
+              <img
+                src="images/tradeflow.png"
+                alt="Trade Flow — трейдинг курстары веб-сайты"
+                class="project-card__img"
+                loading="lazy"
+              >
+              <div class="project-card__overlay">
+                <span class="project-card__category">Білім беру</span>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Trade Flow</h3>
+              <p class="project-card__desc">Трейдинг курстарына арналған сайт. Онлайн және офлайн курстар, команда, миссия және өтінім қалдыру беттері толық іске асырылған.</p>
+              <div class="project-card__tags">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+              </div>
+              <div class="project-card__actions">
+                <a href="https://nurissingo.github.io/trade-flow/" class="btn btn--sm btn--primary" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                </a>
+                <a href="https://github.com/nurissingo/trade-flow" class="btn btn--sm btn--ghost" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-github"></i> Source Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Жоба 6: OphthalmoDoc -->
+          <article class="project-card glass">
+            <div class="project-card__image">
+              <img
+                src="images/ophthalmodoc.png"
+                alt="OphthalmoDoc — офтальмолог қабылдау сайты"
+                class="project-card__img"
+                loading="lazy"
+              >
+              <div class="project-card__overlay">
+                <span class="project-card__category">Медицина</span>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">OphthalmoDoc</h3>
+              <p class="project-card__desc">Офтальмолог Сақтан Айгерім Бердібекқызының жеке қабылдау сайты. Дәрігер туралы ақпарат, қызметтер, онлайн жазылу және админ-панель — қазақ және орыс тілдерінде.</p>
+              <div class="project-card__tags">
+                <span>Next.js</span>
+                <span>TypeScript</span>
+                <span>Supabase</span>
+              </div>
+              <div class="project-card__actions">
+                <a href="https://ophthalmodoc.vercel.app/" class="btn btn--sm btn--primary" target="_blank" rel="noopener">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
                 </a>
               </div>

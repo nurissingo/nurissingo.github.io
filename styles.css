@@ -412,6 +412,15 @@ body.has-promo-banner {
   gap: 0.5rem;
   font-weight: 700;
   font-size: 1.15rem;
+  line-height: 0;
+}
+
+.nav__logo-img {
+  height: 52px;
+  width: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
 }
 
 .nav__logo-icon {
@@ -1276,6 +1285,10 @@ body.has-promo-banner .hero {
 
   .nav__logo {
     font-size: 1rem;
+  }
+
+  .nav__logo-img {
+    height: 42px;
   }
 
   .promo-banner__inner {
