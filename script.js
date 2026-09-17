@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initSmoothActiveLinks();
   initHeaderScroll();
-  initPromoBanner(); // УАҚЫТША — initPromoBanner() жолын өшіріңіз
 });
 
 /* ===== Мобильді мәзір ===== */

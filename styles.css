@@ -13,7 +13,7 @@
   --accent-purple: #a855f7;
   --accent-blue: #3b82f6;
   --accent-violet: #8b5cf6;
-  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.06);
   --glass-border: rgba(255, 255, 255, 0.15);
   --glass-blur: 16px;
   --gradient-main: linear-gradient(135deg, #a855f7, #3b82f6);
@@ -22,7 +22,7 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --radius: 16px;
   --radius-sm: 10px;
-  --header-height: 72px;
+  --header-height: 88px;
   --promo-height: 52px;
 }
 
@@ -40,6 +40,7 @@ html {
   scroll-padding-top: var(--header-height);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -47,7 +48,6 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -1267,7 +1267,7 @@ body.has-promo-banner .hero {
    ============================================ */
 @media (max-width: 768px) {
   :root {
-    --header-height: 64px;
+    --header-height: 76px;
     --promo-height: 88px;
   }
 
@@ -1314,7 +1314,7 @@ body.has-promo-banner .hero {
 
   .hero {
     min-height: auto;
-    padding-top: calc(var(--header-height) + var(--promo-height) + 1rem);
+    padding-top: calc(var(--header-height) + 1rem);
     padding-bottom: 3rem;
   }
 
