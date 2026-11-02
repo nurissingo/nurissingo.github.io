@@ -1,113 +1,57 @@
-/**
- * Portfolio Landing Page — JavaScript
- * Навигация, скролл анимациялары, форма валидациясы
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initScrollReveal();
+  initActiveLinks();
   initContactForm();
-  initSmoothActiveLinks();
-  initHeaderScroll();
 });
 
-/* ===== Мобильді мәзір ===== */
 function initNavigation() {
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
-  const navLinks = links.querySelectorAll('.nav__link');
+  if (!toggle || !links) return;
+
+  const close = () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
 
   toggle.addEventListener('click', () => {
     const isOpen = links.classList.toggle('open');
-    toggle.classList.toggle('active');
-    toggle.setAttribute('aria-expanded', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
   });
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      links.classList.remove('open');
-      toggle.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
+  links.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', close);
   });
 
-  document.addEventListener('click', (e) => {
-    if (!toggle.contains(e.target) && !links.contains(e.target)) {
-      links.classList.remove('open');
-      toggle.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+  document.addEventListener('click', (event) => {
+    if (!toggle.contains(event.target) && !links.contains(event.target)) close();
   });
 }
 
-/* ===== Header скролл кезінде күшейту ===== */
-function initHeaderScroll() {
-  const header = document.getElementById('header');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  }, { passive: true });
-}
-
-/* ===== Бөлімдерге скролл кезінде reveal анимациясы ===== */
-function initScrollReveal() {
-  const revealElements = document.querySelectorAll(
-    '.section__header, .about__text, .tech-stack, .project-card, .service-card, .contact__form, .contact__info'
-  );
-
-  revealElements.forEach(el => el.classList.add('reveal'));
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, index * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  revealElements.forEach(el => observer.observe(el));
-}
-
-/* ===== Белсенді навигация сілтемесі ===== */
-function initSmoothActiveLinks() {
+function initActiveLinks() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav__link:not(.nav__link--cta)');
 
-  window.addEventListener('scroll', () => {
+  const mark = () => {
     let current = '';
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
+    sections.forEach((section) => {
+      if (window.scrollY >= section.offsetTop - 90) current = section.id;
     });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+    navLinks.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
-  }, { passive: true });
+  };
+
+  window.addEventListener('scroll', mark, { passive: true });
+  mark();
 }
 
-/* ===== Байланыс формасы — WhatsApp арқылы жіберу ===== */
 const WHATSAPP_NUMBER = '77074312016';
 
 function initContactForm() {
   const form = document.getElementById('contactForm');
   const successMsg = document.getElementById('formSuccess');
+  if (!form) return;
 
   const validators = {
     name: (value) => {
@@ -117,92 +61,62 @@ function initContactForm() {
     },
     email: (value) => {
       if (!value.trim()) return 'Email мекенжайын енгізіңіз';
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) return 'Дұрыс email енгізіңіз';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Дұрыс email енгізіңіз';
       return '';
     },
     message: (value) => {
       if (!value.trim()) return 'Хабарламаны жазыңыз';
       if (value.trim().length < 10) return 'Хабарлама кемінде 10 әріп болуы керек';
       return '';
-    }
+    },
   };
 
-  function showError(fieldId, message) {
+  const showError = (fieldId, message) => {
     const errorEl = document.getElementById(`${fieldId}Error`);
     const input = document.getElementById(fieldId);
-    errorEl.textContent = message;
-    input.style.borderColor = message ? '#f87171' : '';
-  }
+    if (errorEl) errorEl.textContent = message;
+    input.classList.toggle('is-invalid', Boolean(message));
+  };
 
-  function validateField(fieldId) {
+  const validateField = (fieldId) => {
     const input = document.getElementById(fieldId);
     const error = validators[fieldId](input.value);
     showError(fieldId, error);
     return !error;
-  }
+  };
 
-  function buildWhatsAppMessage(name, email, message) {
-    return [
-      'Сәлем! NURIS.dev портфолио сайтынан хабарлама:',
-      '',
-      `👤 Аты: ${name.trim()}`,
-      `📧 Email: ${email.trim()}`,
-      '',
-      '💬 Хабарлама:',
-      message.trim()
-    ].join('\n');
-  }
-
-  function openWhatsApp(name, email, message) {
-    const text = encodeURIComponent(buildWhatsAppMessage(name, email, message));
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  }
-
-  ['name', 'email', 'message'].forEach(fieldId => {
+  ['name', 'email', 'message'].forEach((fieldId) => {
     const input = document.getElementById(fieldId);
     input.addEventListener('blur', () => validateField(fieldId));
     input.addEventListener('input', () => {
-      if (document.getElementById(`${fieldId}Error`).textContent) {
-        validateField(fieldId);
-      }
+      const errorEl = document.getElementById(`${fieldId}Error`);
+      if (errorEl && errorEl.textContent) validateField(fieldId);
     });
   });
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const ok = ['name', 'email', 'message'].map(validateField).every(Boolean);
+    if (!ok) return;
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const text = encodeURIComponent(
+      [
+        'Сәлем! NURIS.dev портфолио сайтынан хабарлама:',
+        '',
+        `Аты: ${name}`,
+        `Email: ${email}`,
+        '',
+        'Хабарлама:',
+        message,
+      ].join('\n'),
+    );
 
-    const isNameValid = validateField('name');
-    const isEmailValid = validateField('email');
-    const isMessageValid = validateField('message');
-
-    if (isNameValid && isEmailValid && isMessageValid) {
-      openWhatsApp(name, email, message);
-
-      successMsg.hidden = false;
-      form.reset();
-
-      setTimeout(() => {
-        successMsg.hidden = true;
-      }, 6000);
-    }
-  });
-}
-
-/* ===== УАҚЫТША ЖЕҢІЛДІК БАННЕРІ — алу үшін осы функцияны өшіріңіз ===== */
-function initPromoBanner() {
-  const banner = document.getElementById('promoBanner');
-  const closeBtn = document.getElementById('promoClose');
-
-  if (!banner || !closeBtn) return;
-
-  closeBtn.addEventListener('click', () => {
-    banner.remove();
-    document.body.classList.remove('has-promo-banner');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener,noreferrer');
+    if (successMsg) successMsg.hidden = false;
+    form.reset();
+    ['name', 'email', 'message'].forEach((fieldId) => showError(fieldId, ''));
   });
 }
