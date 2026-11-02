@@ -316,6 +316,18 @@ h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 
 .project { overflow: hidden; display: flex; flex-direction: column; }
 
+.project.project--lead {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  grid-column: 1 / -1;
+  align-items: center;
+  border-color: rgba(141, 124, 246, 0.45);
+}
+
+.project.project--lead .project__shot { aspect-ratio: 16 / 9; height: auto; }
+.project.project--lead .project__body { justify-content: center; padding: 22px 24px; }
+.project.project--lead h3 { font-size: 1.45rem; }
+
 .project__shot {
   display: block;
   aspect-ratio: 16 / 9;
@@ -449,7 +461,8 @@ section[id] { scroll-margin-top: calc(var(--header) + 12px); }
   .about,
   .projects,
   .services,
-  .contact { grid-template-columns: 1fr; }
+  .contact,
+  .project.project--lead { grid-template-columns: 1fr; grid-column: auto; }
 
   .hero__photo img { height: 320px; }
   .facts { flex-wrap: wrap; }
