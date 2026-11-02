@@ -436,9 +436,20 @@ h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 section[id] { scroll-margin-top: calc(var(--header) + 12px); }
 
 @media (max-width: 860px) {
-  .nav__toggle { display: inline-block; }
+  .nav__toggle {
+    display: inline-block;
+    margin-left: auto;
+  }
 
   .header__inner { position: relative; }
+
+  .header__inner > nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+  }
 
   .nav__links {
     display: none;
